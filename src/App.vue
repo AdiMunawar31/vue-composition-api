@@ -46,10 +46,20 @@ export default {
       todos.list = items ? JSON.parse(items) : [];
     });
 
+    /**
+     * Menghitung jumlah seluruh todo
+     *
+     * @returns {number}
+     */
     const total = computed(() => {
       return todos.list.length;
     });
 
+    /**
+     * Menambahkan Todo
+     *
+     * @returns {void}
+     */
     const add = () => {
       todos.list.unshift({ acticity: todo.value, isDone: false });
       todo.value = "";
@@ -57,6 +67,12 @@ export default {
       saveData();
     };
 
+    /**
+     * Menghapus todo yang telah di filter melalui index
+     *
+     * @param {number}
+     * @returns {item}
+     */
     const del = (indexTodo) => {
       todos.list = todos.list.filter((item, index) => {
         if (index !== indexTodo) {
@@ -66,6 +82,12 @@ export default {
       saveData();
     };
 
+    /**
+     * Menandakan todo telah berhasil dilakukan
+     *
+     * @param {number}
+     * @returns {item}
+     */
     const done = (indexTodo) => {
       todos.list = todos.list.filter((item, index) => {
         if (index == indexTodo) {
@@ -76,6 +98,11 @@ export default {
       saveData();
     };
 
+    /**
+     * Mendaptarkan todo ke Local Storage
+     *
+     * @returns {void}
+     */
     const saveData = () => {
       localStorage.setItem("VUE-COMPOSITION", JSON.stringify(todos.list));
     };
